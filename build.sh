@@ -5,7 +5,7 @@
 
 PLUGIN_SLUG="doubao-ai-cover-generator"
 VERSION="1.0.1"
-OUTPUT_DIR="../"
+OUTPUT_DIR="./"
 OUTPUT_FILE="${OUTPUT_DIR}${PLUGIN_SLUG}-${VERSION}.zip"
 
 echo "正在清理系统文件..."
@@ -21,7 +21,9 @@ zip -r "${OUTPUT_FILE}" . \
   -x "*.DS_Store" \
   -x "*__MACOSX*" \
   -x "*.gitignore" \
+  -x "*.zip" \
   -x "build.sh" \
+  -x "BUILD.md" \
   -x "*.log"
 
 echo "完成！生成的文件: ${OUTPUT_FILE}"
