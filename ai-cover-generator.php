@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Doubao AI Cover Generator
- * Plugin URI: https://github.com/Sn1waR/doubao-ai-cover-generator
+ * Plugin URI: https://github.com/jiayuqi7813/wordpress-ai-cover-generator
  * Description: 基于文章内容使用AI生成封面的WordPress插件，支持豆包AI
  * Version: 1.0.1
  * Author: Sn1waR

@@ -126,7 +126,7 @@ Doubao AI Cover Generator 是一款强大的 WordPress 插件，能够根据文�
 
 **开发者信息：**
 
-* GitHub: https://github.com/Sn1waR/doubao-ai-cover-generator
+* GitHub: https://github.com/jiayuqi7813/wordpress-ai-cover-generator
 * 作者网站: https://www.snowywar.top
 
 **技术支持：**
