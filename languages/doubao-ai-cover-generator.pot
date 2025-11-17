@@ -1,0 +1,18 @@
+# Copyright (C) 2025 Doubao AI Cover Generator
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Doubao AI Cover Generator 1.0.1\n"
+"Report-Msgid-Bugs-To: https://github.com/jiayuqi7813/wordpress-ai-cover-generator/issues\n"
+"POT-Creation-Date: 2025-01-01 00:00:00+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: WordPress\n"
+"X-Domain: doubao-ai-cover-generator\n"
+
+

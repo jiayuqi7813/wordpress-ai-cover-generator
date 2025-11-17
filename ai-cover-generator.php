@@ -29,7 +29,7 @@ require_once AICG_PLUGIN_DIR . 'includes/class-aicg-editor.php';
 require_once AICG_PLUGIN_DIR . 'includes/class-aicg-ajax.php';
 
 // 初始化插件
-class AI_Cover_Generator {
+class Doubao_AI_Cover_Generator {
     
     private static $instance = null;
     
@@ -88,5 +88,5 @@ class AI_Cover_Generator {
 }
 
 // 启动插件
-AI_Cover_Generator::get_instance();
+Doubao_AI_Cover_Generator::get_instance();
 

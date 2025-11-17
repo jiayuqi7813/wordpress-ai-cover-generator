@@ -2,6 +2,8 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+._*
+__MACOSX
 
 # WordPress
 *.log
