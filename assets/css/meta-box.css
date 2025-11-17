@@ -1,0 +1,41 @@
+#aicg-meta-box-container {
+    padding: 10px 0;
+}
+
+#aicg-meta-box-container p {
+    margin: 0 0 10px 0;
+    color: #666;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+#aicg-meta-generate-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#aicg-meta-generate-btn .dashicons {
+    margin-right: 5px;
+}
+
+#aicg-meta-generate-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+#aicg-meta-status {
+    margin-top: 15px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+#aicg-meta-status .spinner {
+    float: none;
+    margin: 0 5px 0 0;
+    vertical-align: middle;
+}
+

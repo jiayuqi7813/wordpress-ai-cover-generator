@@ -1,0 +1,14 @@
+.aicg-panel {
+    padding: 16px;
+}
+
+.aicg-panel .components-button {
+    width: 100%;
+    justify-content: center;
+}
+
+.aicg-panel .components-spinner {
+    float: none;
+    margin: 0;
+}
+
