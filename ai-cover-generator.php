@@ -1,14 +1,14 @@
 <?php
 /**
- * Plugin Name: Doubao AI Cover Generator
+ * Plugin Name: AI Cover Generator for Doubao
  * Plugin URI: https://github.com/jiayuqi7813/wordpress-ai-cover-generator
- * Description: 基于文章内容使用AI生成封面的WordPress插件，支持豆包AI
+ * Description: Automatically generate beautiful AI-powered cover images for WordPress posts using Doubao AI
  * Version: 1.0.1
- * Author: Sn1waR
+ * Author: jiayuqi
  * Author URI: https://www.snowywar.top
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: doubao-ai-cover-generator
+ * Text Domain: ai-cover-generator-for-doubao
  * Domain Path: /languages
  */
 

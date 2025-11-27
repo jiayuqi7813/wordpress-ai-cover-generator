@@ -1,5 +1,5 @@
-=== Doubao AI Cover Generator ===
-Contributors: sn1war
+=== AI Cover Generator for Doubao ===
+Contributors: jiayuqi
 Donate link: https://www.snowywar.top
 Tags: ai, cover, image, doubao, automation
 Requires at least: 5.0
@@ -9,131 +9,131 @@ Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-自动使用豆包 AI 为 WordPress 文章生成精美的封面图片。
+Automatically generate beautiful cover images for WordPress posts using Doubao AI.
 
 == Description ==
 
-Doubao AI Cover Generator 是一款强大的 WordPress 插件，能够根据文章内容自动生成精美的 AI 封面图片。
+AI Cover Generator for Doubao is a powerful WordPress plugin that automatically generates beautiful AI-powered cover images based on your post content.
 
-**主要特性：**
+**Key Features:**
 
-* 🎨 **智能分析**：自动分析文章内容，生成合适的图像提示词
-* 🖼️ **AI 生成**：使用豆包 AI 的先进图像生成技术创建高质量封面
-* ⚡ **一键生成**：在编辑器中点击一个按钮即可生成并设置封面
-* 🎯 **双编辑器支持**：同时支持 Gutenberg 和经典编辑器
-* 🔧 **灵活配置**：可自定义 API 设置和模型选择
-* 🧪 **测试功能**：内置 API 测试工具，快速验证配置
+* 🎨 **Smart Analysis**: Automatically analyzes post content to generate appropriate image prompts
+* 🖼️ **AI Generation**: Creates high-quality covers using Doubao AI's advanced image generation technology
+* ⚡ **One-Click Generation**: Generate and set cover images with a single button click in the editor
+* 🎯 **Dual Editor Support**: Works seamlessly with both Gutenberg and Classic Editor
+* 🔧 **Flexible Configuration**: Customizable API settings and model selection
+* 🧪 **Testing Tools**: Built-in API testing tool for quick configuration verification
 
-**工作流程：**
+**How It Works:**
 
-1. 插件读取文章内容
-2. 使用豆包 AI 文字模型生成图像描述提示词
-3. 使用豆包 AI 图像模型根据提示词生成封面图片
-4. 自动将生成的图片设置为文章特色图片
+1. The plugin reads your post content
+2. Uses Doubao AI text model to generate image description prompts
+3. Uses Doubao AI image model to generate cover images based on prompts
+4. Automatically sets the generated image as the post's featured image
 
-**支持的 AI 模型：**
+**Supported AI Models:**
 
-* 文字模型：doubao-seed-1-6-251015
-* 图像模型：doubao-seedream-4-0-250828
+* Text Model: doubao-seed-1-6-251015
+* Image Model: doubao-seedream-4-0-250828
 
 == Installation ==
 
-**自动安装：**
+**Automatic Installation:**
 
-1. 登录 WordPress 后台
-2. 进入"插件" > "安装插件"
-3. 搜索 "Doubao AI Cover Generator"
-4. 点击"立即安装"，然后点击"启用"
+1. Log in to your WordPress admin panel
+2. Navigate to "Plugins" > "Add New"
+3. Search for "AI Cover Generator for Doubao"
+4. Click "Install Now" and then "Activate"
 
-**手动安装：**
+**Manual Installation:**
 
-1. 下载插件 ZIP 文件
-2. 登录 WordPress 后台
-3. 进入"插件" > "安装插件" > "上传插件"
-4. 选择 ZIP 文件并上传
-5. 点击"立即启用"
+1. Download the plugin ZIP file
+2. Log in to your WordPress admin panel
+3. Navigate to "Plugins" > "Add New" > "Upload Plugin"
+4. Select the ZIP file and upload
+5. Click "Activate Plugin"
 
-**配置：**
+**Configuration:**
 
-1. 前往"设置" > "AI 封面生成器"
-2. 输入豆包 AI 的 API 基础 URL（默认：https://ark.cn-beijing.volces.com/api/v3）
-3. 输入你的豆包 API 密钥
-4. 配置文字模型和图像模型（可使用默认值）
-5. 点击"保存设置"
-6. 使用"API 测试"功能验证配置是否正确
+1. Go to "Settings" > "AI Cover Generator"
+2. Enter the Doubao AI API base URL (default: https://ark.cn-beijing.volces.com/api/v3)
+3. Enter your Doubao API key
+4. Configure text and image models (default values are provided)
+5. Click "Save Settings"
+6. Use the "API Test" feature to verify your configuration
 
 == Frequently Asked Questions ==
 
-= 如何获取豆包 AI API 密钥？ =
+= How do I get a Doubao AI API key? =
 
-请访问豆包 AI 官方网站（https://www.volcengine.com/）注册账号并获取 API 密钥。
+Please visit the Doubao AI official website (https://www.volcengine.com/) to register an account and obtain an API key.
 
-= 插件支持哪些编辑器？ =
+= Which editors does the plugin support? =
 
-插件同时支持 WordPress 的 Gutenberg 区块编辑器和经典编辑器。
+The plugin supports both WordPress Gutenberg block editor and the Classic Editor.
 
-= 生成的图片会自动保存吗？ =
+= Are generated images automatically saved? =
 
-是的，生成的图片会自动上传到媒体库并设置为文章的特色图片。
+Yes, generated images are automatically uploaded to the media library and set as the post's featured image.
 
-= 生成一张封面需要多长时间？ =
+= How long does it take to generate a cover image? =
 
-通常需要 30-60 秒，具体时间取决于网络状况和 AI 服务器的负载。
+It usually takes 30-60 seconds, depending on network conditions and AI server load.
 
-= 如果生成失败怎么办？ =
+= What should I do if generation fails? =
 
-1. 检查网络连接
-2. 确认 API 密钥正确
-3. 使用设置页面的"API 测试"功能进行诊断
-4. 查看详细的错误信息
+1. Check your network connection
+2. Verify your API key is correct
+3. Use the "API Test" feature on the settings page for diagnostics
+4. Review detailed error messages
 
-= 插件会产生额外费用吗？ =
+= Does the plugin incur additional costs? =
 
-插件本身免费，但使用豆包 AI 服务需要按照豆包的定价标准付费。
+The plugin itself is free, but using Doubao AI services requires payment according to Doubao's pricing structure.
 
 == Screenshots ==
 
-1. 编辑器中的 AI 封面生成器元框
-2. 设置页面 - API 配置
-3. 设置页面 - API 测试工具
-4. Gutenberg 编辑器中的 AI 封面生成面板
+1. AI Cover Generator meta box in the editor
+2. Settings page - API configuration
+3. Settings page - API testing tool
+4. AI Cover Generator panel in Gutenberg editor
 
 == Changelog ==
 
 = 1.0.1 =
-* 优化：分步执行生成流程，避免超时问题
-* 优化：增加详细的错误提示信息
-* 优化：改进 UI 交互体验
-* 修复：Nonce 验证问题
-* 修复：代码规范问题以符合 WordPress 标准
+* Optimization: Step-by-step generation process to avoid timeout issues
+* Optimization: Added detailed error messages
+* Optimization: Improved UI interaction experience
+* Fixed: Nonce verification issues
+* Fixed: Code standards compliance with WordPress guidelines
 
 = 1.0.0 =
-* 首次发布
-* 支持自动生成 AI 封面
-* 支持 Gutenberg 和经典编辑器
-* 内置 API 测试工具
-* 可自定义 API 配置
+* Initial release
+* Support for automatic AI cover generation
+* Support for Gutenberg and Classic Editor
+* Built-in API testing tool
+* Customizable API configuration
 
 == Upgrade Notice ==
 
 = 1.0.1 =
-此版本修复了超时问题并改进了错误处理，建议所有用户升级。
+This version fixes timeout issues and improves error handling. Upgrade recommended for all users.
 
 = 1.0.0 =
-首次发布，欢迎使用！
+Initial release. Welcome!
 
 == Additional Information ==
 
-**开发者信息：**
+**Developer Information:**
 
 * GitHub: https://github.com/jiayuqi7813/wordpress-ai-cover-generator
-* 作者网站: https://www.snowywar.top
+* Author Website: https://www.snowywar.top
 
-**技术支持：**
+**Support:**
 
-如遇到问题，请在 WordPress 支持论坛或 GitHub Issues 中提交反馈。
+If you encounter any issues, please submit feedback in the WordPress support forum or GitHub Issues.
 
-**隐私说明：**
+**Privacy Notice:**
 
-本插件会将文章内容发送到豆包 AI 服务器以生成封面图片。请确保你了解并同意豆包 AI 的隐私政策。
+This plugin sends post content to Doubao AI servers to generate cover images. Please ensure you understand and agree to Doubao AI's privacy policy.
 

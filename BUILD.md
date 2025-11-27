@@ -14,7 +14,7 @@
 - 创建干净的 ZIP 文件
 - 排除 `.git`、`node_modules` 等不需要的文件
 
-生成的文件位于上级目录：`../doubao-ai-cover-generator-1.0.1.zip`
+生成的文件位于上级目录：`../ai-cover-generator-for-doubao-1.0.1.zip`
 
 ### 方法 2：手动打包（命令行）
 
@@ -25,7 +25,7 @@ find . -name "._*" -type f -delete
 
 # 2. 创建 ZIP（从父目录）
 cd ..
-zip -r doubao-ai-cover-generator.zip wordpress-ai \
+zip -r ai-cover-generator-for-doubao.zip wordpress-ai \
   -x "*.git*" \
   -x "*node_modules*" \
   -x "*.DS_Store" \
@@ -56,7 +56,7 @@ zip -r doubao-ai-cover-generator.zip wordpress-ai \
 解压 ZIP 文件并检查：
 
 ```bash
-unzip -l doubao-ai-cover-generator-1.0.1.zip | grep -E "\.DS_Store|__MACOSX"
+unzip -l ai-cover-generator-for-doubao-1.0.1.zip | grep -E "\.DS_Store|__MACOSX"
 ```
 
 如果没有输出，说明打包成功！

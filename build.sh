@@ -3,7 +3,7 @@
 # WordPress 插件打包脚本
 # 此脚本会创建一个干净的 ZIP 文件，不包含 .DS_Store 和其他系统文件
 
-PLUGIN_SLUG="doubao-ai-cover-generator"
+PLUGIN_SLUG="ai-cover-generator-for-doubao"
 VERSION="1.0.1"
 OUTPUT_DIR="./"
 OUTPUT_FILE="${OUTPUT_DIR}${PLUGIN_SLUG}-${VERSION}.zip"
