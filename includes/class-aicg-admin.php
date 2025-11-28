@@ -21,8 +21,8 @@ class AICG_Admin {
      */
     public function add_admin_menu() {
         add_options_page(
-            'AI封面生成器设置',
-            'AI封面生成器',
+            __('AI Cover Generator Settings', 'ai-cover-generator-for-doubao'),
+            __('AI Cover Generator', 'ai-cover-generator-for-doubao'),
             'manage_options',
             'ai-cover-generator',
             array($this, 'render_settings_page')
@@ -59,14 +59,14 @@ class AICG_Admin {
         
         add_settings_section(
             'aicg_main_section',
-            'API设置',
+            __('API Settings', 'ai-cover-generator-for-doubao'),
             array($this, 'render_section_description'),
             'ai-cover-generator'
         );
         
         add_settings_field(
             'aicg_api_key',
-            'API密钥',
+            __('API Key', 'ai-cover-generator-for-doubao'),
             array($this, 'render_api_key_field'),
             'ai-cover-generator',
             'aicg_main_section'
@@ -74,7 +74,7 @@ class AICG_Admin {
         
         add_settings_field(
             'aicg_api_base_url',
-            'API基础URL',
+            __('API Base URL', 'ai-cover-generator-for-doubao'),
             array($this, 'render_api_base_url_field'),
             'ai-cover-generator',
             'aicg_main_section'
@@ -82,7 +82,7 @@ class AICG_Admin {
         
         add_settings_field(
             'aicg_text_model',
-            '文字模型',
+            __('Text Model', 'ai-cover-generator-for-doubao'),
             array($this, 'render_text_model_field'),
             'ai-cover-generator',
             'aicg_main_section'
@@ -90,7 +90,7 @@ class AICG_Admin {
         
         add_settings_field(
             'aicg_image_model',
-            '图像模型',
+            __('Image Model', 'ai-cover-generator-for-doubao'),
             array($this, 'render_image_model_field'),
             'ai-cover-generator',
             'aicg_main_section'
@@ -107,7 +107,7 @@ class AICG_Admin {
         
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce is verified by settings_fields()
         if (isset($_GET['settings-updated'])) {
-            add_settings_error('aicg_messages', 'aicg_message', '设置已保存', 'updated');
+            add_settings_error('aicg_messages', 'aicg_message', __('Settings Saved', 'ai-cover-generator-for-doubao'), 'updated');
         }
         
         settings_errors('aicg_messages');
@@ -118,50 +118,50 @@ class AICG_Admin {
                 <?php
                 settings_fields('aicg_settings');
                 do_settings_sections('ai-cover-generator');
-                submit_button('保存设置');
+                submit_button(__('Save Settings', 'ai-cover-generator-for-doubao'));
                 ?>
             </form>
             
             <div class="aicg-test-section" style="margin-top: 30px; padding: 20px; background: #fff; border: 1px solid #ccd0d4; box-shadow: 0 1px 1px rgba(0,0,0,.04);">
-                <h2>API测试</h2>
-                <p>分别测试文字模型（文章生成提示词）和图像模型（提示词生成图片）的功能。</p>
+                <h2><?php esc_html_e('API Test', 'ai-cover-generator-for-doubao'); ?></h2>
+                <p><?php esc_html_e('Test the functionality of text model (article to prompt) and image model (prompt to image).', 'ai-cover-generator-for-doubao'); ?></p>
                 
                 <div style="margin-top: 15px; padding: 15px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 3px;">
                     <label style="display: flex; align-items: center; cursor: pointer;">
                         <input type="checkbox" id="aicg-use-client-request" style="margin-right: 8px;">
-                        <strong>使用客户端直接请求（推荐）</strong>
+                        <strong><?php esc_html_e('Use Client-side Request (Recommended)', 'ai-cover-generator-for-doubao'); ?></strong>
                     </label>
                     <p style="margin: 8px 0 0 0; color: #666; font-size: 13px;">
-                        如果遇到超时错误，勾选此选项将直接从浏览器调用 API，绕过服务器端的超时限制。<br>
-                        <strong>注意：</strong>API 密钥会暴露在浏览器中，仅用于测试，不要在生产环境使用。
+                        <?php esc_html_e('If you encounter timeout errors, check this option to call the API directly from the browser, bypassing server-side timeout limits.', 'ai-cover-generator-for-doubao'); ?><br>
+                        <strong><?php esc_html_e('Note:', 'ai-cover-generator-for-doubao'); ?></strong> <?php esc_html_e('The API key will be exposed in the browser, use only for testing, do not use in production environment.', 'ai-cover-generator-for-doubao'); ?>
                     </p>
                 </div>
                 
                 <div style="margin-top: 20px;">
-                    <h3 style="margin-top: 0;">1. 测试文字模型（文章 → 提示词）</h3>
-                    <p style="color: #666;">测试使用示例文章内容生成图像提示词的功能。</p>
+                    <h3 style="margin-top: 0;">1. <?php esc_html_e('Test Text Model (Article → Prompt)', 'ai-cover-generator-for-doubao'); ?></h3>
+                    <p style="color: #666;"><?php esc_html_e('Test generating image prompts using sample article content.', 'ai-cover-generator-for-doubao'); ?></p>
                     <button type="button" id="aicg-test-text" class="button button-primary" style="margin-top: 10px;">
-                        <span class="dashicons dashicons-edit" style="margin-top: 3px;"></span> 测试文字模型
+                        <span class="dashicons dashicons-edit" style="margin-top: 3px;"></span> <?php esc_html_e('Test Text Model', 'ai-cover-generator-for-doubao'); ?>
                     </button>
                     <div id="aicg-test-text-results" style="margin-top: 15px; display: none;">
-                        <h4>测试结果</h4>
+                        <h4><?php esc_html_e('Test Results', 'ai-cover-generator-for-doubao'); ?></h4>
                         <div id="aicg-test-text-content"></div>
                     </div>
                 </div>
                 
                 <div style="margin-top: 30px; padding-top: 30px; border-top: 1px solid #ddd;">
-                    <h3 style="margin-top: 0;">2. 测试图像模型（提示词 → 图片）</h3>
-                    <p style="color: #666;">测试使用提示词生成图片的功能。可以输入自定义提示词，或使用上方测试生成的提示词。</p>
+                    <h3 style="margin-top: 0;">2. <?php esc_html_e('Test Image Model (Prompt → Image)', 'ai-cover-generator-for-doubao'); ?></h3>
+                    <p style="color: #666;"><?php esc_html_e('Test generating images using prompts. You can enter a custom prompt or use the prompt generated above.', 'ai-cover-generator-for-doubao'); ?></p>
                     <div style="margin-top: 10px;">
-                        <label for="aicg-test-prompt-input" style="display: block; margin-bottom: 5px; font-weight: 600;">提示词：</label>
-                        <textarea id="aicg-test-prompt-input" rows="3" style="width: 100%; max-width: 600px;" placeholder="输入英文提示词，例如：A beautiful landscape with mountains and a lake, cinematic lighting, vibrant colors"></textarea>
-                        <p class="description" style="margin-top: 5px;">留空将使用默认提示词进行测试</p>
+                        <label for="aicg-test-prompt-input" style="display: block; margin-bottom: 5px; font-weight: 600;"><?php esc_html_e('Prompt:', 'ai-cover-generator-for-doubao'); ?></label>
+                        <textarea id="aicg-test-prompt-input" rows="3" style="width: 100%; max-width: 600px;" placeholder="<?php esc_attr_e('Enter English prompt, e.g.: A beautiful landscape with mountains and a lake, cinematic lighting, vibrant colors', 'ai-cover-generator-for-doubao'); ?>"></textarea>
+                        <p class="description" style="margin-top: 5px;"><?php esc_html_e('Leave empty to use default prompt for testing', 'ai-cover-generator-for-doubao'); ?></p>
                     </div>
                     <button type="button" id="aicg-test-image" class="button button-primary" style="margin-top: 10px;">
-                        <span class="dashicons dashicons-format-image" style="margin-top: 3px;"></span> 测试图像模型
+                        <span class="dashicons dashicons-format-image" style="margin-top: 3px;"></span> <?php esc_html_e('Test Image Model', 'ai-cover-generator-for-doubao'); ?>
                     </button>
                     <div id="aicg-test-image-results" style="margin-top: 15px; display: none;">
-                        <h4>测试结果</h4>
+                        <h4><?php esc_html_e('Test Results', 'ai-cover-generator-for-doubao'); ?></h4>
                         <div id="aicg-test-image-content"></div>
                     </div>
                 </div>
@@ -174,7 +174,7 @@ class AICG_Admin {
      * 渲染章节描述
      */
     public function render_section_description() {
-        echo '<p>配置豆包AI的API信息。请确保已获取有效的API密钥。</p>';
+        echo '<p>' . esc_html__('Configure Doubao AI API information. Please ensure you have obtained a valid API key.', 'ai-cover-generator-for-doubao') . '</p>';
     }
     
     /**
@@ -188,8 +188,8 @@ class AICG_Admin {
                name="aicg_api_key" 
                value="<?php echo esc_attr($value); ?>" 
                class="regular-text" 
-               placeholder="请输入API密钥" />
-        <p class="description">豆包AI的API密钥（Bearer Token）</p>
+               placeholder="<?php esc_attr_e('Enter API Key', 'ai-cover-generator-for-doubao'); ?>" />
+        <p class="description"><?php esc_html_e('Doubao AI API Key (Bearer Token)', 'ai-cover-generator-for-doubao'); ?></p>
         <?php
     }
     
@@ -204,7 +204,7 @@ class AICG_Admin {
                name="aicg_api_base_url" 
                value="<?php echo esc_attr($value); ?>" 
                class="regular-text" />
-        <p class="description">API服务的基础URL地址</p>
+        <p class="description"><?php esc_html_e('API Service Base URL', 'ai-cover-generator-for-doubao'); ?></p>
         <?php
     }
     
@@ -219,7 +219,7 @@ class AICG_Admin {
                name="aicg_text_model" 
                value="<?php echo esc_attr($value); ?>" 
                class="regular-text" />
-        <p class="description">用于生成图像提示词的文字模型</p>
+        <p class="description"><?php esc_html_e('Text model used for generating image prompts', 'ai-cover-generator-for-doubao'); ?></p>
         <?php
     }
     
@@ -234,7 +234,7 @@ class AICG_Admin {
                name="aicg_image_model" 
                value="<?php echo esc_attr($value); ?>" 
                class="regular-text" />
-        <p class="description">用于生成图像的图像模型</p>
+        <p class="description"><?php esc_html_e('Image model used for generating images', 'ai-cover-generator-for-doubao'); ?></p>
         <?php
     }
     

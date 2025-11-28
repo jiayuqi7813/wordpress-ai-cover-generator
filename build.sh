@@ -24,7 +24,8 @@ zip -r "${OUTPUT_FILE}" . \
   -x "*.zip" \
   -x "build.sh" \
   -x "BUILD.md" \
-  -x "*.log"
+  -x "*.log" \
+  -x "ai-cover-generator.php"
 
 echo "完成！生成的文件: ${OUTPUT_FILE}"
 echo ""

@@ -47,10 +47,10 @@ class AICG_Editor {
             'ajaxUrl' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('aicg_generate_cover'),
             'strings' => array(
-                'generateCover' => '生成AI封面',
-                'generating' => '正在生成...',
-                'success' => '封面生成成功！',
-                'error' => '生成失败，请重试'
+                'generateCover' => __('Generate AI Cover', 'ai-cover-generator-for-doubao'),
+                'generating' => __('Generating...', 'ai-cover-generator-for-doubao'),
+                'success' => __('Cover generated successfully!', 'ai-cover-generator-for-doubao'),
+                'error' => __('Generation failed, please try again', 'ai-cover-generator-for-doubao')
             )
         ));
     }
@@ -64,7 +64,7 @@ class AICG_Editor {
         }
         
         echo '<button type="button" id="aicg-generate-cover-btn" class="button" style="margin-left: 5px;">';
-        echo '<span class="dashicons dashicons-format-image" style="margin-top: 3px;"></span> 生成AI封面';
+        echo '<span class="dashicons dashicons-format-image" style="margin-top: 3px;"></span> ' . esc_html__('Generate AI Cover', 'ai-cover-generator-for-doubao');
         echo '</button>';
     }
     
@@ -76,102 +76,33 @@ class AICG_Editor {
         if (!$screen || $screen->base !== 'post') {
             return;
         }
-        ?>
-        <script type="text/javascript">
-        jQuery(document).ready(function($) {
-            $('#aicg-generate-cover-btn').on('click', function() {
-                var $btn = $(this);
-                var originalText = $btn.html();
-                
-                var postContent = '';
-                if (typeof tinymce !== 'undefined' && tinymce.get('content')) {
-                    postContent = tinymce.get('content').getContent({format: 'text'});
-                } else {
-                    postContent = $('#content').val();
-                }
-                
-                if (!postContent || postContent.trim() === '') {
-                    alert('请先输入文章内容');
-                    return;
-                }
-                
-                var postId = $('#post_ID').val();
-                var ajaxUrl = '<?php echo esc_js(admin_url('admin-ajax.php')); ?>';
-                var nonce = '<?php echo esc_js(wp_create_nonce('aicg_generate_cover')); ?>';
-                
-                // 第一步：生成提示词
-                $btn.prop('disabled', true).html('<span class="spinner is-active" style="float:none;margin:0 5px;"></span> 步骤 1/2：生成提示词...');
-                
-                $.ajax({
-                    url: ajaxUrl,
-                    type: 'POST',
-                    timeout: 1800000, // 30分钟
-                    data: {
-                        action: 'aicg_test_text',
-                        test_content: postContent,
-                        nonce: nonce
-                    },
-                    success: function(response) {
-                        if (response.success && response.data.prompt) {
-                            var prompt = response.data.prompt;
-                            
-                            // 第二步：生成图片
-                            $btn.html('<span class="spinner is-active" style="float:none;margin:0 5px;"></span> 步骤 2/2：生成图片...');
-                            
-                            $.ajax({
-                                url: ajaxUrl,
-                                type: 'POST',
-                                timeout: 1800000, // 30分钟
-                                data: {
-                                    action: 'aicg_generate_image_and_set',
-                                    post_id: postId,
-                                    prompt: prompt,
-                                    nonce: nonce
-                                },
-                                success: function(response) {
-                                    if (response.success) {
-                                        alert('✓ 封面生成成功！图片已自动设置为特色图片。页面即将刷新...');
-                                        location.reload();
-                                    } else {
-                                        alert('✗ 生成图片失败：' + (response.data.message || '未知错误'));
-                                        $btn.prop('disabled', false).html(originalText);
-                                    }
-                                },
-                                error: function(xhr, status, error) {
-                                    var errorMsg = '生成图片失败';
-                                    if (status === 'timeout') {
-                                        errorMsg += '：请求超时';
-                                    } else if (xhr.status === 524) {
-                                        errorMsg += '：服务器超时（524错误）';
-                                    } else if (xhr.status) {
-                                        errorMsg += '：HTTP错误 ' + xhr.status;
-                                    }
-                                    alert('✗ ' + errorMsg);
-                                    $btn.prop('disabled', false).html(originalText);
-                                }
-                            });
-                        } else {
-                            alert('✗ 生成提示词失败：' + (response.data.message || '未知错误'));
-                            $btn.prop('disabled', false).html(originalText);
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        var errorMsg = '生成提示词失败';
-                        if (status === 'timeout') {
-                            errorMsg += '：请求超时';
-                        } else if (xhr.status === 524) {
-                            errorMsg += '：服务器超时（524错误）';
-                        } else if (xhr.status) {
-                            errorMsg += '：HTTP错误 ' + xhr.status;
-                        }
-                        alert('✗ ' + errorMsg);
-                        $btn.prop('disabled', false).html(originalText);
-                    }
-                });
-            });
-        });
-        </script>
-        <?php
+        
+        wp_enqueue_script(
+            'aicg-classic-editor',
+            AICG_PLUGIN_URL . 'assets/js/classic-editor.js',
+            array('jquery'),
+            AICG_VERSION,
+            true
+        );
+        
+        wp_localize_script('aicg-classic-editor', 'aicgClassicEditor', array(
+            'ajaxUrl' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('aicg_generate_cover'),
+            'strings' => array(
+                'enterContent' => __('Please enter post content first', 'ai-cover-generator-for-doubao'),
+                'step1' => __('Step 1/2: Generating prompt...', 'ai-cover-generator-for-doubao'),
+                'step2' => __('Step 2/2: Generating image...', 'ai-cover-generator-for-doubao'),
+                'success' => __('✓ Cover generated successfully! Image set as featured image. Reloading...', 'ai-cover-generator-for-doubao'),
+                'failImage' => __('✗ Failed to generate image: ', 'ai-cover-generator-for-doubao'),
+                'failPrompt' => __('✗ Failed to generate prompt: ', 'ai-cover-generator-for-doubao'),
+                'unknownError' => __('Unknown error', 'ai-cover-generator-for-doubao'),
+                'timeout' => __('Request timeout', 'ai-cover-generator-for-doubao'),
+                'serverTimeout' => __('Server timeout (524 error)', 'ai-cover-generator-for-doubao'),
+                'httpError' => __('HTTP Error ', 'ai-cover-generator-for-doubao'),
+                'failGenImage' => __('Failed to generate image', 'ai-cover-generator-for-doubao'),
+                'failGenPrompt' => __('Failed to generate prompt', 'ai-cover-generator-for-doubao')
+            )
+        ));
     }
     
     /**
@@ -180,7 +111,7 @@ class AICG_Editor {
     public function add_meta_box() {
         add_meta_box(
             'aicg-meta-box',
-            'AI 封面生成器',
+            __('AI Cover Generator', 'ai-cover-generator-for-doubao'),
             array($this, 'render_meta_box'),
             'post',
             'side',
@@ -195,9 +126,9 @@ class AICG_Editor {
         wp_nonce_field('aicg_meta_box', 'aicg_meta_box_nonce');
         ?>
         <div id="aicg-meta-box-container">
-            <p>基于文章内容自动生成 AI 封面图片</p>
+            <p><?php esc_html_e('Automatically generate AI cover image based on post content', 'ai-cover-generator-for-doubao'); ?></p>
             <button type="button" id="aicg-meta-generate-btn" class="button button-primary button-large" style="width: 100%; margin-top: 10px;">
-                <span class="dashicons dashicons-format-image" style="margin-top: 4px;"></span> 生成 AI 封面
+                <span class="dashicons dashicons-format-image" style="margin-top: 4px;"></span> <?php esc_html_e('Generate AI Cover', 'ai-cover-generator-for-doubao'); ?>
             </button>
             <div id="aicg-meta-status" style="margin-top: 10px; display: none;"></div>
         </div>
